@@ -3,7 +3,7 @@ import CurricularGrid from './components/CurricularGrid'
 
 function App() {
   return (
-    <Container>
+    <Container size="xl">
       <CurricularGrid />
     </Container>
   )

@@ -404,7 +404,9 @@
     {
       "semester": 8,
       "name": "Inglés Para Informáticos II",
-      "prev": [],
+      "prev": [
+        "Inglés Para Informáticos I"
+      ],
       "next": []
     },
     {
@@ -577,7 +579,7 @@
         "Introducción al Cálculo",
         "Álgebra",
         "Introducción a la Física",
-        "Electivo AFI",
+        "Electivo AFI I",
         "Ciudadanía",
         "Programación Orientada a Objetos",
         "Cálculo Diferencial e Integral",
@@ -592,7 +594,7 @@
         "Autómatas y Lenguajes Formales",
         "Modelamiento y Paradigmas de la Programación",
         "Inglés II",
-        "Electivo AFI",
+        "Electivo AFI II",
         "Ecuaciones Diferenciales",
         "Física Moderna y Ondas",
         "Probabilidad y Estadística",
@@ -605,7 +607,7 @@
         "Tecnologías Móviles y Web",
         "Ingeniería de Sistemas",
         "Inglés IV",
-        "Electivo AFI",
+        "Electivo AFI III",
         "Arquitectura de Computadores",
         "Economía",
         "Gestión de Empresas",
@@ -619,7 +621,7 @@
         "Contabilidad y Costos",
         "Formulación y Evaluación de Proyectos",
         "Inglés Para Informáticos II",
-        "Electivo AFI"
+        "Electivo AFI IV"
       ],
       "next": []
     }

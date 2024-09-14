@@ -1,13 +1,14 @@
-import { subjects } from '../mock/curriculum.json'
-import { Table } from '@mantine/core'
+import { useState } from 'react';
+import { subjects } from '../mock/curriculum.json';
+import { Table } from '@mantine/core';
 
 function distributeElements(inputList) {
-  const sortBySemester = Array.from({ length: 11 }, () => [])
+  const sortBySemester = Array.from({ length: 11 }, () => []);
 
   inputList.forEach(el => {
     const index = el.semester;
     sortBySemester[index - 1].push(el);
-  })
+  });
 
   const rows = [];
   while (sortBySemester.some(semester => semester.length > 0)) {
@@ -25,20 +26,63 @@ function distributeElements(inputList) {
   return rows;
 }
 
-function CurricularGrid() {
-  const header = Array.from({ length: 11 }, (_, index) => (
-    <Table.Th key={index}>{index + 1}° Semestre</Table.Th>
-  ))
-
-  const rows = distributeElements(subjects).map((row, index) => (
-    <Table.Tr key={index}>
-      {row.map((subject, index) => (
-        <Table.Td key={index}>
-          {subject ? subject.name : null}
-        </Table.Td>
+function SemesterHeader({ totalSemesters }) {
+  return (
+    <Table.Tr>
+      {Array.from({ length: totalSemesters }, (_, index) => (
+        <Table.Th key={index}>{index + 1}° Semestre</Table.Th>
       ))}
     </Table.Tr>
-  ))
+  );
+}
+
+function TableCell({ subject, onClick, style }) {
+  return (
+    <Table.Td
+      onClick={() => onClick(subject)}
+      style={style}
+    >
+      {subject ? subject.name : null}
+    </Table.Td>
+  );
+}
+
+function TableRow({ row, onClick, getCellStyle }) {
+  return (
+    <Table.Tr>
+      {row.map((subject, index) => (
+        <TableCell
+          key={index}
+          subject={subject}
+          onClick={onClick}
+          style={getCellStyle(subject)}
+        />
+      ))}
+    </Table.Tr>
+  );
+}
+
+function ColorLogic(clicked, subject) {
+  if (!subject) return { cursor: 'default', backgroundColor: 'white' };
+
+  let backgroundColor = 'white';
+  if (clicked?.name === subject.name) backgroundColor = 'lightblue';
+  if (clicked?.prev.includes(subject.name)) backgroundColor = 'lightcoral';
+  if (clicked?.next.includes(subject.name)) backgroundColor = 'lightgreen';
+
+  return {
+    cursor: 'pointer',
+    backgroundColor
+  };
+}
+
+function CurricularGrid() {
+  const [clicked, setClicked] = useState(null);
+
+  const getCellStyle = (subject) => ColorLogic(clicked, subject);
+
+  const totalSemesters = 11;
+  const rows = distributeElements(subjects);
 
   return (
     <Table
@@ -49,10 +93,20 @@ function CurricularGrid() {
       style={{ marginTop: 20 }}
     >
       <Table.Thead>
-        <Table.Tr>{header}</Table.Tr>
+        <SemesterHeader totalSemesters={totalSemesters} />
       </Table.Thead>
-      <Table.Tbody>{rows}</Table.Tbody>
+      <Table.Tbody>
+        {rows.map((row, index) => (
+          <TableRow
+            key={index}
+            row={row}
+            onClick={setClicked}
+            getCellStyle={getCellStyle}
+          />
+        ))}
+      </Table.Tbody>
     </Table>
   );
 }
-export default CurricularGrid
+
+export default CurricularGrid;
