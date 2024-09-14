@@ -89,10 +89,10 @@ function CurricularGrid() {
       verticalSpacing="md"
       striped
       withColumnBorders
-      withRowBorders={false}
+      withTableBorder
       style={{ marginTop: 20 }}
     >
-      <Table.Thead>
+      <Table.Thead style={{ backgroundColor: 'lightgray' }}>
         <SemesterHeader totalSemesters={totalSemesters} />
       </Table.Thead>
       <Table.Tbody>
