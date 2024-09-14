@@ -1,6 +1,11 @@
+import { Container } from '@mantine/core'
+import CurricularGrid from './components/CurricularGrid'
+
 function App() {
   return (
-    <>Hello World!</>
+    <Container>
+      <CurricularGrid />
+    </Container>
   )
 }
 
