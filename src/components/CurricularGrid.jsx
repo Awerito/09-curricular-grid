@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { subjects } from '../mock/curriculum.json';
+import { useHover } from '@mantine/hooks';
 import { Table } from '@mantine/core';
 
 function distributeElements(inputList) {
@@ -37,10 +38,13 @@ function SemesterHeader({ totalSemesters }) {
 }
 
 function TableCell({ subject, onClick, style }) {
+  const { hovered, ref } = useHover();
+
   return (
     <Table.Td
       onClick={() => onClick(subject)}
-      style={style}
+      style={{ ...style, outline: hovered ? '2px solid black' : 'none' }}
+      ref={ref}
     >
       {subject ? subject.name : null}
     </Table.Td>
