@@ -545,7 +545,9 @@
         "Electivo Profesional I",
         "Electivo Profesional II"
       ],
-      "next": []
+      "next": [
+        "Proyecto de Titulo"
+      ]
     },
     {
       "semester": 10,

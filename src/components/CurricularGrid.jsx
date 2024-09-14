@@ -67,7 +67,7 @@ function ColorLogic(clicked, subject) {
 
   let backgroundColor = 'white';
   if (clicked?.name === subject.name) backgroundColor = 'lightblue';
-  if (clicked?.prev.includes(subject.name)) backgroundColor = 'lightcoral';
+  if (clicked?.prev.includes(subject.name)) backgroundColor = 'orange';
   if (clicked?.next.includes(subject.name)) backgroundColor = 'lightgreen';
 
   return {
