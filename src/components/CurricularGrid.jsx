@@ -1,18 +1,18 @@
-import { useState } from 'react';
-import { subjects } from '../mock/curriculum.json';
-import { useHover } from '@mantine/hooks';
-import { Table } from '@mantine/core';
+import { useState } from "react";
+import { subjects } from "../mock/curriculum.json";
+import { useHover } from "@mantine/hooks";
+import { Table } from "@mantine/core";
 
 function distributeElements(inputList) {
   const sortBySemester = Array.from({ length: 11 }, () => []);
 
-  inputList.forEach(el => {
+  inputList.forEach((el) => {
     const index = el.semester;
     sortBySemester[index - 1].push(el);
   });
 
   const rows = [];
-  while (sortBySemester.some(semester => semester.length > 0)) {
+  while (sortBySemester.some((semester) => semester.length > 0)) {
     const row = [];
     for (let i = 0; i < 11; i++) {
       if (sortBySemester[i].length > 0) {
@@ -43,7 +43,7 @@ function TableCell({ subject, onClick, style }) {
   return (
     <Table.Td
       onClick={() => onClick(subject)}
-      style={{ ...style, outline: hovered ? '2px solid black' : 'none' }}
+      style={{ ...style, outline: hovered ? "2px solid black" : "none" }}
       ref={ref}
     >
       {subject ? subject.name : null}
@@ -67,16 +67,16 @@ function TableRow({ row, onClick, getCellStyle }) {
 }
 
 function ColorLogic(clicked, subject) {
-  if (!subject) return { cursor: 'default', backgroundColor: 'white' };
+  if (!subject) return { cursor: "default", backgroundColor: "white" };
 
-  let backgroundColor = 'white';
-  if (clicked?.name === subject.name) backgroundColor = 'lightblue';
-  if (clicked?.prev.includes(subject.name)) backgroundColor = 'orange';
-  if (clicked?.next.includes(subject.name)) backgroundColor = 'lightgreen';
+  let backgroundColor = "white";
+  if (clicked?.name === subject.name) backgroundColor = "lightblue";
+  if (clicked?.prev.includes(subject.name)) backgroundColor = "orange";
+  if (clicked?.next.includes(subject.name)) backgroundColor = "lightgreen";
 
   return {
-    cursor: 'pointer',
-    backgroundColor
+    cursor: "pointer",
+    backgroundColor,
   };
 }
 
@@ -96,7 +96,7 @@ function CurricularGrid() {
       withTableBorder
       style={{ marginTop: 20 }}
     >
-      <Table.Thead style={{ backgroundColor: 'lightgray' }}>
+      <Table.Thead style={{ backgroundColor: "lightgray" }}>
         <SemesterHeader totalSemesters={totalSemesters} />
       </Table.Thead>
       <Table.Tbody>
